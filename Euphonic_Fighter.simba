@@ -39,7 +39,7 @@ Const //notouchy!
   ITEM_BONE = 1;
   ITEM_POT  = 2;
   ITEM_ETC  = 3;
-  version   = '';
+  version   = 'X';
 
 Var
   KillCount,Exp,HPExp,
@@ -1281,14 +1281,14 @@ begin
   if AutoUpdate then
   begin
     writeln('Checking for script updates...');
-    OnlineVersion := between('<version>','</version>',GetPage('http://euphfight.nigglescatchall.netau.net/OnlineVersion.html'));
+    OnlineVersion := GetPage('https://github.com/nick9321/EuphonicFighter/raw/master/Version.txt');
     writeln(OnlineVersion);
     writeln(version)
     if (OnlineVersion <> version) then
-    begin {
+    begin
       writeLn('Newer script version online!');
       writeLn('Autoupdating to newer version.');
-      NewScript := GetPage('http://euphfight.nigglescatchall.netau.net/Euphonic_Fighter.html');
+      NewScript := GetPage('https://github.com/nick9321/EuphonicFighter/raw/master/Euphonic_Fighter.simba');
 
       NeiFeilNennen := ScriptPath+ 'Euphonic Fighter Version '+OnlineVersion+'.simba';
       Neifile := Rewritefile(NeiFeilNennen, true);
@@ -1302,10 +1302,10 @@ begin
       end;
       CloseFile(Neifile);
       writeLn('New script downloaded to '+NeiFeilNennen+'!! Please use this one!!');
-      TerminateScript;                                            }
+      TerminateScript;                                            {
       writeln('Please download the latest version of the script at');
       writeln('http://villavu.com/forum/showthread.php?p=1058352#post1058352');
-      terminateScript;
+      terminateScript;                                                         }
     end else
       writeLn('You have the latest version of the script!');
   end else
